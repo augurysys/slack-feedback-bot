@@ -5,3 +5,4 @@ channels_config = [
 ]
 
 slack_token = os.getenv("SLACK_TOKEN")
+github_token= os.getenv("GITHUB_TOKEN")
