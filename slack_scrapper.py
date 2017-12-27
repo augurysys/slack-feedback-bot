@@ -23,5 +23,4 @@ class SlackScrapper(object):
                 float(message["ts"])
             )
             msg = Message(is_bot, t, message["text"])
-            # print "bot={} datetime={} text={}".format(msg.is_bot, msg.timestamp, msg.text)
             itemizer.parse_message(msg)
