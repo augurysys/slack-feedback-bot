@@ -1,4 +1,5 @@
-from criteria import Staleness, Hype
+from criteria import Staleness, Hype, BotMention
+from config import *
 
 class Verifier(object):
 
@@ -7,6 +8,7 @@ class Verifier(object):
 
     def _init_criteria(self, item_type):
         self._criteria = [
+            BotMention(item_type),
             Staleness(item_type),
             Hype(item_type),            
         ]
@@ -16,4 +18,21 @@ class Verifier(object):
             for criterion in self._criteria:
                 criterion.test(item)
 
-        return [item for item in items if item.tests]
+        return [(item, self._choose_criterion(item)) for item in items if item]
+    
+    @staticmethod
+    def _choose_criterion(item):
+        
+        criteria_keys = item.tests.keys()
+        if BOT_MENTION_CRITERION in criteria_keys:
+            return None
+
+        if STALENESS_CRITERION in criteria_keys:
+            return item.test[STALENESS_CRITERION]
+
+        return item.test[HYPE_CRITERION]
+
+
+
+        
+        
