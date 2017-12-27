@@ -18,6 +18,7 @@ class Verifier(object):
             for criterion in self._criteria:
                 criterion.test(item)
 
+        
         return [(item, self._choose_criterion(item)) for item in items if item]
     
     @staticmethod
@@ -28,9 +29,9 @@ class Verifier(object):
             return None
 
         if STALENESS_CRITERION in criteria_keys:
-            return item.test[STALENESS_CRITERION]
+            return item.tests[STALENESS_CRITERION]
 
-        return item.test[HYPE_CRITERION]
+        return item.tests[HYPE_CRITERION]
 
 
 
