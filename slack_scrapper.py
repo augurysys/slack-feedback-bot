@@ -1,5 +1,5 @@
 import re
-import Slacker
+from slacker import Slacker
 
 
 class SlackScrapper(object):
