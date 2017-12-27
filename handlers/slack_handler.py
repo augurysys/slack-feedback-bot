@@ -69,7 +69,7 @@ class SlackHandler(object):
         print "command stats"
         channel_name, channel_type = self.get_channel_info(channel)
         res = channel_report(channel_name, channel_type)
-        return_message  ="******** FEEDBACK BOT RESPONSE **********\n{}".format(res.join(", "))
+        return_message  ="******** FEEDBACK BOT RESPONSE **********\n{}".format("\n".join([r[1] for r in res]))
         self.sc.rtm_send_message(channel, return_message)
 
     def get_channel_info(self, channel_id):

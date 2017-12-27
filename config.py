@@ -2,7 +2,7 @@ import os
 from datetime import timedelta
 
 channels_config = [
-    ("code-reviews-hack", "pr"),
+    ("code-reviews", "pr"),
     ("design-reviews", "dr")
 ]
 
@@ -11,7 +11,7 @@ GITHUB_TOKEN= os.getenv("GITHUB_TOKEN")
 
 MY_BOT_ID = "U8KKHE011"
 
-MESSAGES_LIMIT = 10
+MESSAGES_LIMIT = 100
 
 COMMAND_PREFIX = "%"
 
