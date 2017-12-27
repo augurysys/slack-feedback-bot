@@ -1,5 +1,5 @@
 from config import *
-from itemizers.itemizer import itemizer_factory
+from itemizers import itemizer_factory
 from slack_scrapper import SlackScrapper
 
 for (channel_name, channel_type) in channels_config():
