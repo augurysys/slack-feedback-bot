@@ -13,5 +13,3 @@ def channel_report(channel_name, channel_type):
     critera_verifier = Verifier(channel_type)
     items = critera_verifier.verify(items)
     print items
-
-    

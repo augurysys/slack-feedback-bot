@@ -67,15 +67,16 @@ class SlackHandler(object):
 
     def handle_stats(self, user, channel, command, text):
         print "command stats"
-        #channel_name = self.get_channel_name(channel)
-        channel_name, channel_type = config.channels_config[0]
+        channel_name, channel_type = self.get_channel_info(channel)
         channel_report(channel_name, channel_type)
 
-    def get_channel_name(self, channel_id):
+    def get_channel_info(self, channel_id):
         channels = self.slacker.channels.list(True)
         for channel in channels:
             if channel["id"] == channel_id:
-                return channel["name"]
+                for cc in config.channels_config:
+                    if cc.get("name", "") == channel["name"]:
+                        return cc
         return ""
 
 
