@@ -1,7 +1,8 @@
+from datetime import datetime
+
+import config
 from model.message import Message
 from slacker import Slacker
-
-MY_BOT_ID = "U8KKHE011"
 
 class SlackScrapper(object):
     def __init__(self, channel_name, slack_token):
@@ -17,7 +18,10 @@ class SlackScrapper(object):
         for message in messages:
             if "subtype" in message or message["type"] != "message":
                 continue
-            is_bot = MY_BOT_ID == message["user"]
-            msg = Message(is_bot, message["ts"], message["text"])
-            print msg
+            is_bot = config.MY_BOT_ID == message["user"]
+            t = datetime.fromtimestamp(
+                float(message["ts"])
+            )
+            msg = Message(is_bot, t, message["text"])
+            # print "bot={} datetime={} text={}".format(msg.is_bot, msg.timestamp, msg.text)
             itemizer.parse_message(msg)

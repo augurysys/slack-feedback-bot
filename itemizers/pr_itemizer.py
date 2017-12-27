@@ -8,7 +8,7 @@ class PrItemizer(object):
         self.github_client = github_client
 
     def parse_message(self, message):
-        text = message["text"]
+        text = message.text
 
         pr_id = parse_pr_id(text)
         if not pr_id:

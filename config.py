@@ -9,6 +9,8 @@ channels_config = [
 slack_token = os.getenv("SLACK_TOKEN")
 github_token= os.getenv("GITHUB_TOKEN")
 
+MY_BOT_ID = "U8KKHE011"
+
 STALENESS_THRESHOLD = timedelta(days=2)
 STALENESS_CRITERION = "staleness"
 
