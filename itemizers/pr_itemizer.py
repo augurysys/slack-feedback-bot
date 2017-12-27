@@ -38,9 +38,9 @@ class PrItemizer(object):
     def enrich(self):
         to_delete = []
 
-        for key, item in self.items:
-            repo, pull_number = item.id.split('_')
-            pull_request = self.github_client.get_repo(repo).get_pull(pull_number)
+        for key, item in self.items.iteritems():
+            repo, pull_number = item.id.split('#')
+            pull_request = self.github_client.get_repo("augurysys/" + repo).get_pull(int(pull_number))
 
             if pull_request.state != 'open':
                 to_delete.append(item.id)
@@ -65,8 +65,14 @@ class PrItemizer(object):
 
 
 def parse_pr_id(message):
-    if 'https://github.com/augurysys' not in message:
-        return None
-    items = message.split('/')
-    index = items.index('augurysys')
-    return '{}_{}'.format(items[index + 1], items[index + 3])
+    lines = message.split('\n')
+
+    for line in lines:
+        if 'https://github.com/augurysys' not in line:
+            continue
+
+        items = line.split('/')
+        index = items.index('augurysys')
+        return '{}#{}'.format(items[index + 1], items[index + 3]).strip(">")
+
+    return None
