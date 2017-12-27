@@ -1,3 +1,5 @@
+import re
+
 from model.item import Item
 from model.item import Comment
 
@@ -10,36 +12,37 @@ class PrItemizer(object):
     def parse_message(self, message):
         text = message.text
 
-        pr_id = parse_pr_id(text)
-        if not pr_id:
+        pr_ids = parse_pr_id(text)
+        if not pr_ids:
             return
+        for pr_id in pr_ids:
+            if pr_id in self.items:
+                item = self.items[pr_id]
 
-        if pr_id in self.items:
-            item = self.items[pr_id]
+                if item.first_mentioned > message.timestamp:
+                    item.first_mentioned = message.timestamp
 
-            if item.first_mentioned > message.timestamp:
+                if item.last_mentioned < message.timestamp:
+                    item.last_mentioned = message.timestamp
+
+                if message.is_bot and (item.last_mentioned_bot is None or item.last_mentioned_bot < message.timestamp):
+                    item.last_mentioned_bot = message.timestamp
+            else:
+                item = Item()
+                item.id = pr_id
+                item.type = 'pr'
                 item.first_mentioned = message.timestamp
-
-            if item.last_mentioned < message.timestamp:
                 item.last_mentioned = message.timestamp
-
-            if message.is_bot and (item.last_mentioned_bot is None or item.last_mentioned_bot < message.timestamp):
-                item.last_mentioned_bot = message.timestamp
-        else:
-            item = Item()
-            item.id = pr_id
-            item.type = 'pr'
-            item.first_mentioned = message.timestamp
-            item.last_mentioned = message.timestamp
-            if message.is_bot:
-                item.last_mentioned_bot = message.timestamp
-            self.items[pr_id] = item
+                if message.is_bot:
+                    item.last_mentioned_bot = message.timestamp
+                self.items[pr_id] = item
 
     def enrich(self):
         to_delete = []
 
         for key, item in self.items.iteritems():
             repo, pull_number = item.id.split('#')
+            print repo, pull_number
             pull_request = self.github_client.get_repo("augurysys/" + repo).get_pull(int(pull_number))
 
             if pull_request.state != 'open':
@@ -66,13 +69,10 @@ class PrItemizer(object):
 
 def parse_pr_id(message):
     lines = message.split('\n')
+    regex_result = re.findall("(https:\/\/github.com\/augurysys\/)(\w*/pull\/\d*)", message)
 
-    for line in lines:
-        if 'https://github.com/augurysys' not in line:
-            continue
+    if not regex_result:
+        return None
 
-        items = line.split('/')
-        index = items.index('augurysys')
-        return '{}#{}'.format(items[index + 1], items[index + 3]).strip(">")
-
-    return None
+    result = map(lambda l: l[1].split('/'), regex_result)
+    return map(lambda l: '{}#{}'.format(l[0], l[2]), result)
