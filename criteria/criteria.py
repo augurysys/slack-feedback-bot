@@ -34,7 +34,7 @@ class Staleness(Criterion):
 
         if comment_delta > self._threshold:
             item.tests[STALENESS_CRITERION] = {
-                    "type": STALENESS_CRITERION
+                    "type": STALENESS_CRITERION,
                     "delta": comment_delta,
                     "commented": commented
                 }
