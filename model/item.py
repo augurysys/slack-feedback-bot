@@ -15,4 +15,4 @@ class Item(object):
         self.first_mentioned = None
         self.last_mentioned = None
         self.comments = []
-        self.tests = []
+        self.tests = {}

@@ -28,13 +28,10 @@ def Staleness(Criterion):
             commented = True
 
         if comment_delta > STALENESS_THRESHOLD:
-            item.tests.append({
-                "type": STALENESS_CRITERION,
-                "data": {
+            item.tests[STALENESS_CRITERION] = {
                     "delta": comment_delta,
                     "commented": commented
                 }
-            })
 
         return
 
@@ -44,16 +41,12 @@ def Hype(Criterion):
         pass
 
     def test(self, item):
-
         unique_commenters = set([c.owner for c in item.comments])
 
         if unique_commenters >= HYPE_THRESHOLD:
-            item.tests.append({
-                "type": HYPE_CRITERION,
-                "data": {
+            item.tests[HYPE_CRITERION] = {
                     "unique_commenters": unique_commenters
                 }
-            })
 
 def Ignored(Criterion):
 
@@ -61,13 +54,9 @@ def Ignored(Criterion):
         pass
 
     def test(self, item):
-
         unique_commenters = set([c.owner for c in item.comments])
 
         if unique_commenters < IGNORE_THRESHOLD:
-            item.tests.append({
-                "type": IGNORE_CRITERION,
-                "data": {
+            item.tests[IGNORE_CRITERION] = {
                     "unique_commenters": unique_commenters
                 }
-            })        
