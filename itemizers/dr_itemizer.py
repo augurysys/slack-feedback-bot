@@ -9,11 +9,12 @@ class DrItemizer():
         self.drive_client = drive_client
 
     def parse_message(self, message):
-        text = message["text"]
+        text = message.text
 
         dr_id = parse_dr_id(text)
         if not dr_id:
             return
+        print dr_id
 
         if dr_id in self.items:
             item = self.items[dr_id]
@@ -38,7 +39,7 @@ class DrItemizer():
 
     def enrich(self):
 
-        for key, item in self.items:
+        for key, item in self.items.iteritems():
             dr = self.drive_client.files().get(fileId=item.id, fields="owners, name").execute()
 
             owner_name = dr['owners'][0]['displayName']
