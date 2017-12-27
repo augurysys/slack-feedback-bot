@@ -8,7 +8,7 @@ def channel_report(channel_name, channel_type):
     scrapper = SlackScrapper(channel_name, SLACK_TOKEN)
     scrapper.parse(itemizer)
     itemizer.enrich()
-    items = itemizer.items
+    items = itemizer.items.values()
 
     critera_verifier = Verifier(channel_type)
     items = critera_verifier.verify(items)
