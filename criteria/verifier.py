@@ -15,3 +15,7 @@ class Verifier(object):
         for item in items:
             for criterion in self._criteria:
                 criterion.test(item)
+
+        return [item for item in items if item.tests]
+
+            
