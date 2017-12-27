@@ -9,8 +9,5 @@ class SlackScrapper:
 
     def parse(self, itemizer):
         messages = self.slacker.channels.history(self.channel_id)
-
-        files = []
-
         for message in messages.body["messages"]:
             itemizer.parse_message(message)
