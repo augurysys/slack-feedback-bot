@@ -11,5 +11,5 @@ def channel_report(channel_name, channel_type):
     items = itemizer.items.values()
 
     critera_verifier = Verifier(channel_type)
-    # items = critera_verifier.verify(items)
+    items = critera_verifier.verify(items)
     print items
