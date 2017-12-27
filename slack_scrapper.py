@@ -3,6 +3,7 @@ from slacker import Slacker
 
 MY_BOT_ID = "U8KKHE011"
 
+
 class SlackScrapper(object):
     def __init__(self, channel_name, slack_token):
         self.slacker = Slacker(slack_token)
