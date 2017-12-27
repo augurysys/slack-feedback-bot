@@ -40,14 +40,15 @@ class DrItemizer():
 
         for key, item in self.items:
             dr = self.drive_client.files().get(fileId=item.id, fields="owners, name").execute()
-            dr_comments = self.drive_client.comments().list(fileId=item.id, fields="comments").execute()['comments']
 
             owner_name = dr['owners'][0]['displayName']
             item.owner = dr['owners'][0]['emailAddress']
             item.title = dr['name']
 
+            dr_comments = self.drive_client.comments().list(fileId=item.id, fields="comments").execute()['comments']
+
             for comment in dr_comments:
-                if owner_name == comment['author']['displayName']:
+                if owner_name == comment['author']['displayName'] or comment['deleted']:
                     continue
 
                 com = Comment()

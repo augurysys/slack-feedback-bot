@@ -2,7 +2,8 @@ import os
 from datetime import timedelta
 
 channels_config = [
-    ("code-reviews", "pr")
+    ("code-reviews", "pr"),
+    ("design-reviews", "dr")
 ]
 
 slack_token = os.getenv("SLACK_TOKEN")
