@@ -1,5 +1,7 @@
 import re
 
+import itertools
+
 from model.item import Item, Comment
 
 
@@ -49,14 +51,17 @@ class DrItemizer():
             dr_comments = self.drive_client.comments().list(fileId=item.id, fields="comments").execute()['comments']
 
             for comment in dr_comments:
-                if owner_name == comment['author']['displayName'] or comment['deleted']:
-                    continue
+                all_replies = list(comment['replies'])
+                all_replies.insert(0, comment)
+                for reply in all_replies:
 
-                com = Comment()
-                com.time = comment['createdTime']
-                com.owner = comment['author']['displayName']
-                com.text = comment['content']
-                item.comments.append(com)
+                    if owner_name == reply['author']['displayName'] or reply['deleted'] or not reply.get('content'):
+                        continue
+                    com = Comment()
+                    com.time = reply['createdTime']
+                    com.owner = reply['author']['displayName']
+                    com.text = reply['content']
+                    item.comments.append(com)
 
 
 def parse_dr_id(text):
