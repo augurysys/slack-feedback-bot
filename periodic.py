@@ -2,7 +2,6 @@ from config import *
 from itemizers import itemizer_factory
 from slack_scrapper import SlackScrapper
 
-
 if __name__ == "__main__":
     for (channel_name, channel_type) in channels_config():
         itemizer = itemizer_factory(channel_type)
@@ -16,5 +15,3 @@ if __name__ == "__main__":
         items = critera_verifier.verify(items)
 
         print items
-
-    

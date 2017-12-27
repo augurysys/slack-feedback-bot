@@ -1,6 +1,6 @@
 class DrItemizer():
     def __init__(self):
-        self.items = {}
+        self.items = []
 
     def parse_message(self, message):
         pass
