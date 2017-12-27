@@ -1,3 +1,4 @@
 google-api-python-client==1.6.4
 PyGithub==1.35
+slackclient==1.1.0
 slacker==0.9.60

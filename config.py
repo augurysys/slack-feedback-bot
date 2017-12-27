@@ -6,10 +6,12 @@ channels_config = [
     ("design-reviews", "dr")
 ]
 
-slack_token = os.getenv("SLACK_TOKEN")
-github_token= os.getenv("GITHUB_TOKEN")
+SLACK_TOKEN = os.getenv("SLACK_TOKEN")
+GITHUB_TOKEN= os.getenv("GITHUB_TOKEN")
 
 MY_BOT_ID = "U8KKHE011"
+
+COMMAND_PREFIX = "%"
 
 STALENESS_THRESHOLD = timedelta(days=2)
 STALENESS_CRITERION = "staleness"

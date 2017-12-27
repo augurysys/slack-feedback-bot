@@ -1,5 +1,5 @@
-from handlers.slack_handler import Slack_handler
+from handlers.slack_handler import SlackHandler
 
 if __name__ == "__main__":
 
-    Slack_handler().init()
+    SlackHandler().init()

@@ -1,14 +1,12 @@
 from .pr_itemizer import PrItemizer
 from .dr_itemizer import DrItemizer
 from github import Github
-from config import github_token
+from config import GITHUB_TOKEN
 import httplib2
-import apiclient.discovery
 import apiclient.http
-import oauth2client.client
 from oauth2client.service_account import ServiceAccountCredentials
 
-github_client = Github(login_or_token=github_token)
+github_client = Github(login_or_token=GITHUB_TOKEN)
 
 credentials = ServiceAccountCredentials.from_json_keyfile_name(
     './augury-bi-868deec84c0a.json',
