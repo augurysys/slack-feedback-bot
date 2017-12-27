@@ -3,6 +3,7 @@ import re
 import itertools
 
 from model.item import Item, Comment
+from datetime import datetime
 
 
 class DrItemizer():
@@ -59,6 +60,7 @@ class DrItemizer():
                         continue
                     com = Comment()
                     com.time = reply['createdTime']
+                    com.time = datetime.strptime(com.time, '%Y-%m-%dT%H:%M:%S.%fZ')
                     com.owner = reply['author']['displayName']
                     com.text = reply['content']
                     item.comments.append(com)
