@@ -5,9 +5,8 @@ channels_config = [
 ]
 
 slack_token = os.getenv("SLACK_TOKEN")
+github_token = os.getenv("GITHUB_TOKEN")
 
 def get_channels_config():
     return channels_config
 
-def get_slack_token():
-    return slack_token
