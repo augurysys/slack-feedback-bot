@@ -1,25 +1,7 @@
 # slack-feedback-bot
 
 **Design**:
+https://docs.google.com/document/d/1QLXDV6H0oFZnsC2ZjCHqcNocXrtAKdscEHNysotrRNk/edit
 
-cron task calls periodic.py
-
-config: {
-  
-}
-
-
-itemizer = PRItemizer() 
-scraper = SlackScraper(channel_name, itemizer)
-
-
-
-
-
-SlackScrapper(channel string, itemizer Itemizer)
-- parse() Items
-
-Itemizer interface:
-- parse_message(msg)
-- 
-
+periodic.py cron job should trigger
+api.py handles slack commands
