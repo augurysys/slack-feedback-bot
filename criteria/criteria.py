@@ -46,7 +46,7 @@ class Hype(Criterion):
     def test(self, item):
         unique_commenters = set([c.owner for c in item.comments])
 
-        if unique_commenters >= HYPE_THRESHOLD:
+        if len(unique_commenters) >= HYPE_THRESHOLD:
             item.tests[HYPE_CRITERION] = {
                     "type": HYPE_CRITERION,
                     "unique_commenters": unique_commenters
@@ -57,6 +57,5 @@ class BotMention(Criterion):
     def test(self, item):
 
         if item.last_mentioned_bot:
-
             item.tests[BOT_MENTION_CRITERION] = {"type": BOT_MENTION_CRITERION,
              "last_mentioned_bot": item.last_mentioned_bot}

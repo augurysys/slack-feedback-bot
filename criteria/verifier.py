@@ -19,7 +19,7 @@ class Verifier(object):
                 criterion.test(item)
 
         
-        return [(item, self._choose_criterion(item)) for item in items if item]
+        return [(item, self._choose_criterion(item)) for item in items if item.tests]
     
     @staticmethod
     def _choose_criterion(item):
