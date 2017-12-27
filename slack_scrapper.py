@@ -1,5 +1,5 @@
-from slacker import Slacker
 from model.message import Message
+from slacker import Slacker
 
 MY_BOT_ID = "U8KKHE011"
 

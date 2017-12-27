@@ -8,4 +8,6 @@ for (channel_name, channel_type) in channels_config:
     scrapper.parse(itemizer)
     itemizer.enrich()
     items = itemizer.items
-    print items
+
+    critera_verifier = CriteriaVerifier(channel_type)
+    critera_verifier.verify(items)
