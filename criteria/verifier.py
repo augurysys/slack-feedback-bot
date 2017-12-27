@@ -1,4 +1,4 @@
-
+from criteria import Staleness, Hype
 
 class Verifier(object):
 
@@ -17,5 +17,3 @@ class Verifier(object):
                 criterion.test(item)
 
         return [item for item in items if item.tests]
-
-            

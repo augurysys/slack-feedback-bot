@@ -1,4 +1,5 @@
-from config import STALENESS_THRESHOLD, STALENESS_CRITERION
+from datetime import datetime
+from config import *
 
 
 class Criterion(object):
@@ -7,9 +8,6 @@ class Criterion(object):
         pass
 
     def test(self, item):
-        raise NotImplementedError
-
-    def approve(self, item):
         raise NotImplementedError
 
 
@@ -23,7 +21,7 @@ def Staleness(Criterion):
         comment_times.sort(reverse=True)
 
         if not comment_times:
-            comment_delta = (now - item.last_mention)
+            comment_delta = (self._now - item.last_mention)
             commented = False
         else:
             comment_delta = (comment_times[0] - item.last_mention)
@@ -56,3 +54,20 @@ def Hype(Criterion):
                     "unique_commenters": unique_commenters
                 }
             })
+
+def Ignored(Criterion):
+
+    def __init__(self, item_type):
+        pass
+
+    def test(self, item):
+
+        unique_commenters = set([c.owner for c in item.comments])
+
+        if unique_commenters < IGNORE_THRESHOLD:
+            item.tests.append({
+                "type": IGNORE_CRITERION,
+                "data": {
+                    "unique_commenters": unique_commenters
+                }
+            })        
