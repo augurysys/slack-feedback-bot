@@ -2,7 +2,7 @@ import os
 from datetime import timedelta
 
 channels_config = [
-    ("code-reviews", "pr"),
+    ("code-reviews-hack", "pr"),
     ("design-reviews", "dr")
 ]
 
@@ -10,6 +10,8 @@ SLACK_TOKEN = os.getenv("SLACK_TOKEN")
 GITHUB_TOKEN= os.getenv("GITHUB_TOKEN")
 
 MY_BOT_ID = "U8KKHE011"
+
+MESSAGES_LIMIT = 10
 
 COMMAND_PREFIX = "%"
 

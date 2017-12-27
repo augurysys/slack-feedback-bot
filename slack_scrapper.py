@@ -12,7 +12,7 @@ class SlackScrapper(object):
 
     def parse(self, itemizer):
         print "Fetch messages from channel {}".format([self.channel_id])
-        response = self.slacker.channels.history(self.channel_id)
+        response = self.slacker.channels.history(self.channel_id, count=config.MESSAGES_LIMIT)
         messages = response.body["messages"]
 
         for message in messages:
