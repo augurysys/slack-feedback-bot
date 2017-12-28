@@ -87,7 +87,7 @@ class SlackHandler(object):
 
     def handle_stats(self, user, channel, command, text):
         print "command stats"
-        self.sc.rtm_send_message(channel, "Fetching stats...")
+        # self.sc.rtm_send_message(channel, "Fetching stats...")
         channel_name, channel_type = self.get_channel_info(channel)
         res = channel_report(channel_name, channel_type)
         lines = ["{} by {} - {}".format(r[0].id, r[0].owner, r[1]["type"]) for r in res]
@@ -101,7 +101,7 @@ class SlackHandler(object):
         for channel in channels.body["channels"]:
             if channel["id"] == channel_id:
                 for cc in config.channels_config:
-                    if cc[0] == channel["name"]:
+                    if cc[0] == channel["name"].encode('utf-8'):
                         return cc
         return ""
 
