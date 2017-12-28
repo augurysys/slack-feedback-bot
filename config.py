@@ -2,7 +2,7 @@ import os
 from datetime import timedelta
 
 channels_config = [
-    ("code-reviews", "pr"),
+    ("code-reviews-hack", "pr"),
     ("design-reviews", "doc"),
     ("specs-reviews", "doc")
 
