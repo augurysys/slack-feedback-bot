@@ -1,4 +1,4 @@
-isfrom itemizers import itemizer_factory
+from itemizers import itemizer_factory
 from slack_scrapper import SlackScrapper
 from config import *
 from criteria.verifier import Verifier
@@ -52,4 +52,7 @@ def channel_report(channel_name, channel_type):
 
     critera_verifier = Verifier(channel_type)
     items = critera_verifier.verify(items)
-    return [chosen_item(items)]
+    if items:
+        return [chosen_item(items)]
+
+    return None
