@@ -1,4 +1,4 @@
-from criteria import Staleness, Hype, BotMention, HotComment
+onfrom criteria import Staleness, Hype, BotMention, HotComment
 from config import *
 
 
@@ -14,7 +14,7 @@ class Verifier(object):
             Hype(item_type),
         ]
 
-        if item_type == "dr":
+        if item_type == "doc":
             _default_criteria.append(HotComment(item_type))
 
         self._criteria = _default_criteria
