@@ -75,8 +75,7 @@ class PrItemizer(object):
 
 
 def parse_pr_id(message):
-    lines = message.split('\n')
-    regex_result = re.findall("(https:\/\/github.com\/augurysys\/)(\w*/pull\/\d*)", message)
+    regex_result = re.findall("(https:\/\/github.com\/augurysys\/)([\w\d-]*/pull\/\d*)", message)
 
     if not regex_result:
         return None

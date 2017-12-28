@@ -2,8 +2,8 @@ import os
 from datetime import timedelta
 
 channels_config = [
-    ("code-reviews-hack", "pr"),
-    ("design-reviews-hack", "doc"),
+    ("code-reviews-demo", "pr"),
+    ("design-reviews-demo", "doc"),
     ("spec-reviews-hack", "doc")
 ]
 
@@ -22,7 +22,7 @@ COMMAND_PREFIX = "%"
 
 STALENESS_CRITERION = "staleness"
 DOC_STALENESS_THRESHOLD = timedelta(days=2)
-PR_STALENESS_THRESHOLD = timedelta(days=3)
+PR_STALENESS_THRESHOLD = timedelta(seconds=10)
 
 HYPE_THRESHOLD = 3
 HYPE_CRITERION = "hype"
