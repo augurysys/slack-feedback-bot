@@ -3,6 +3,7 @@ class Comment(object):
         self.owner = None
         self.text = None
         self.time = None
+        self.replies_count = 0
 
 
 class Item(object):
