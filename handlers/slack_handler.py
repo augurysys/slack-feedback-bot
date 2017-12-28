@@ -3,6 +3,7 @@ import traceback
 from slackclient import SlackClient
 import time
 from slacker import Slacker
+from dispatch import dispatch
 import config
 from commands.channel_report import channel_report
 from commands.list_items import list_items
@@ -89,12 +90,14 @@ class SlackHandler(object):
         print "command stats"
         # self.sc.rtm_send_message(channel, "Fetching stats...")
         channel_name, channel_type = self.get_channel_info(channel)
-        res = channel_report(channel_name, channel_type)
-        lines = ["{} by {} - {}".format(r[0].id, r[0].owner, r[1]["type"]) for r in res]
-        if not lines:
-            lines = ["This is so boring... Nothing new here..."]
-        return_message  ="******** FEEDBACK BOT RESPONSE **********\n{}".format("\n".join(lines))
-        self.sc.rtm_send_message(channel, return_message)
+        items = channel_report(channel_name, channel_type)
+        if items:
+            dispatch(items, channel_name, channel_type)
+        # lines = ["{} by {} - {}".format(r[0].id, r[0].owner, r[1]["type"]) for r in res]
+        # if not lines:
+        #     lines = ["This is so boring... Nothing new here..."]
+        # return_message  ="******** FEEDBACK BOT RESPONSE **********\n{}".format("\n".join(lines))
+        # self.sc.rtm_send_message(channel, return_message)
 
     def get_channel_info(self, channel_id):
         channels = self.slacker.channels.list(True)

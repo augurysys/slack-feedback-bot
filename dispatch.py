@@ -22,7 +22,7 @@ def _format(item):
         commenter = item[1]['comment'].owner
         comment_text = item[1]['comment'].text
 
-        text= hot_comment_text.format(name=commenter, text=comment_text, title=item[0].title, url=item[0].url)
+        text= hot_comment_text.format(name=commenter, comment=comment_text, title=item[0].title, url=item[0].url)
         image = "https://media.giphy.com/media/3ohc16Cky5Mu9rZwT6/giphy.gif"
     else:
         return None
