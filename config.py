@@ -8,8 +8,8 @@ channels_config = [
 ]
 
 staleness_text = "It's lonely out here for *{name}*, if only someone would comment about {url}"
-hype_text = "The party has already started, *{names}* are already there!, join with your comments! {url}"
-hot_comment_text = "*{name}* dropped a bomb *{comment}* in {title}, what are you waiting for join the party? {url}"
+hype_text = "The party has already started, *{names}* are already there! fulfill your FOMO! {url}"
+hot_comment_text = "*{name}* dropped a bomb *{comment}* in {title}, what are you waiting for? join the party! {url}"
 
 SLACK_TOKEN = os.getenv("SLACK_TOKEN")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
