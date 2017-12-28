@@ -15,9 +15,9 @@ class Staleness(Criterion):
         self._now = datetime.now()
 
         if item_type == "doc":
-            self._threshold = timedelta(days=2)
+            self._threshold = DOC_STALENESS_THRESHOLD
         elif item_type == "pr":
-            self._threshold = timedelta(days=1)
+            self._threshold = PR_STALENESS_THRESHOLD
 
     def test(self, item):
         comment_times = [c.time for c in item.comments]
@@ -63,5 +63,6 @@ class HotComment(Criterion):
         if item.comments:
             sorted_comments = sorted(item.comments, key=lambda i: i.replies_count, reverse=True)
 
-            item.tests[HOT_COMMENT_CRITERION] = {"type": HOT_COMMENT_CRITERION, "comment": sorted_comments[0]}
+            if sorted_comments[0].replies_count >= HOT_COMMENT_THRESHOLD:
+                item.tests[HOT_COMMENT_CRITERION] = {"type": HOT_COMMENT_CRITERION, "comment": sorted_comments[0]}
 
