@@ -10,7 +10,8 @@ def chosen_item(items):
     def _criterion_compare(i1, i2, _type):
 
         if _type == STALENESS_CRITERION:
-            return i1[1]['delta'] > i2[1]['delta']
+            return True
+            # return i1[1]['delta'] > i2[1]['delta']
         
         if _type == HYPE_CRITERION:
             return i1[1]['unique_commenters'] > i2[1]['unique_commenters']
