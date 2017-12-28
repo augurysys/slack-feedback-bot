@@ -6,7 +6,7 @@ from model.item import Item, Comment
 from datetime import datetime
 
 
-class DrItemizer():
+class DocItemizer():
     def __init__(self, drive_client):
         self.items = dict()
         self.drive_client = drive_client
@@ -33,7 +33,7 @@ class DrItemizer():
         else:
             item = Item()
             item.id = dr_id
-            item.type = 'dr'
+            item.type = 'doc'
             item.first_mentioned = message.timestamp
             item.last_mentioned = message.timestamp
             if message.is_bot:

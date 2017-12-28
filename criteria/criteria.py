@@ -16,7 +16,7 @@ class Staleness(Criterion):
     def __init__(self, item_type):
         self._now = datetime.now()
 
-        if item_type == "dr":
+        if item_type == "doc":
             self._threshold = timedelta(days=2)
         elif item_type == "pr":
             self._threshold = timedelta(days=1)

@@ -1,5 +1,5 @@
 from .pr_itemizer import PrItemizer
-from .dr_itemizer import DrItemizer
+from .doc_itemizer import DocItemizer
 from github import Github
 from config import GITHUB_TOKEN
 import httplib2
@@ -21,5 +21,5 @@ drive_service = apiclient.discovery.build('drive', 'v3', http=http)
 def itemizer_factory(itemizer_type):
     if itemizer_type == 'pr':
         return PrItemizer(github_client)
-    elif itemizer_type == 'dr':
-        return DrItemizer(drive_service)
+    elif itemizer_type == 'doc':
+        return DocItemizer(drive_service)

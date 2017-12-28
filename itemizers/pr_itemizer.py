@@ -31,6 +31,7 @@ class PrItemizer(object):
                 item = Item()
                 item.id = pr_id
                 item.type = 'pr'
+                item.project = pr_id.split('#')[0]
                 item.first_mentioned = message.timestamp
                 item.last_mentioned = message.timestamp
                 if message.is_bot:

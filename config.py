@@ -3,7 +3,9 @@ from datetime import timedelta
 
 channels_config = [
     ("code-reviews", "pr"),
-    ("design-reviews", "dr")
+    ("design-reviews", "doc"),
+    ("specs-reviews", "doc")
+
 ]
 
 SLACK_TOKEN = os.getenv("SLACK_TOKEN")
