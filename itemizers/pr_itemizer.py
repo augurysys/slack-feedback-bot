@@ -43,7 +43,11 @@ class PrItemizer(object):
         for key, item in self.items.iteritems():
             repo, pull_number = item.id.split('#')
             print repo, pull_number
-            pull_request = self.github_client.get_repo("augurysys/" + repo).get_pull(int(pull_number))
+            try:
+                pull_request = self.github_client.get_repo("augurysys/" + repo).get_pull(int(pull_number))
+            except Exception as e:
+                print "Invalid PR link, ignoring [repo={}] [pull_number={}]".format(repo, pull_number)
+                continue
 
             if pull_request.state != 'open':
                 to_delete.append(item.id)
