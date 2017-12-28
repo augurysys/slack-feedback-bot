@@ -63,10 +63,6 @@ class SlackHandler(object):
         print "command={} not found".format(command)
 
     def handle_reset(self, user, channel, command, text):
-        channel_name, channel_type = self.get_channel_info(channel)
-        if channel_name[-5:] != "-hack":
-            self.sc.rtm_send_message(channel, "No, I will not remove all messages from this channel...")
-            return
         self.sc.rtm_send_message(channel, "Reseting bot data in channel...")
         res = self.slacker.channels.history(channel)
         counter = 0
@@ -95,6 +91,8 @@ class SlackHandler(object):
         channel_name, channel_type = self.get_channel_info(channel)
         res = channel_report(channel_name, channel_type)
         lines = ["{} by {} - {}".format(r[0].id, r[0].owner, r[1]["type"]) for r in res]
+        if not lines:
+            lines = ["This is so boring... Nothing new here..."]
         return_message  ="******** FEEDBACK BOT RESPONSE **********\n{}".format("\n".join(lines))
         self.sc.rtm_send_message(channel, return_message)
 

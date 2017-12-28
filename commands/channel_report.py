@@ -55,4 +55,4 @@ def channel_report(channel_name, channel_type):
     if items:
         return [chosen_item(items)]
 
-    return None
+    return []
