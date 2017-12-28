@@ -1,4 +1,4 @@
-onfrom criteria import Staleness, Hype, BotMention, HotComment
+from criteria import Staleness, Hype, BotMention, HotComment
 from config import *
 
 
