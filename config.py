@@ -4,7 +4,7 @@ from datetime import timedelta
 channels_config = [
     ("code-reviews-hack", "pr"),
     ("design-reviews-hack", "doc"),
-    ("specs-reviews-hack", "doc")
+    ("spec-reviews-hack", "doc")
 ]
 
 staleness_text = "It's lonely out here for *{name}*, if only someone would comment about {url}"

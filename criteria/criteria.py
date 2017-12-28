@@ -20,21 +20,23 @@ class Staleness(Criterion):
             self._threshold = PR_STALENESS_THRESHOLD
 
     def test(self, item):
-        comment_times = [c.time for c in item.comments]
-        comment_times.sort(reverse=True)
+        # comment_times = [c.time for c in item.comments]
+        # comment_times.sort(reverse=True)
 
-        if not comment_times:
-            comment_delta = (self._now - item.last_mentioned)
-            commented = False
-        else:
-            comment_delta = (comment_times[0] - item.last_mentioned)
-            commented = True
+        # if not comment_times:
+        #     comment_delta = (self._now - item.last_mentioned)
+        #     commented = False
+        # else:
+        #     comment_delta = (comment_times[0] - item.last_mentioned)
+        #     commented = True
 
-        if comment_delta > self._threshold:
+        # if comment_delta > self._threshold:
+
+        if not item.comments:
             item.tests[STALENESS_CRITERION] = {
                 "type": STALENESS_CRITERION,
-                "delta": comment_delta,
-                "commented": commented
+                # "delta": comment_delta,
+                # "commented": commented
             }
 
         return

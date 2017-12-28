@@ -42,6 +42,6 @@ def dispatch(items, channel, _type):
         _f = _format(item)
         if _f:
             attachments.append(_f)
-    channel = "code-reviews-hell"
+
     print attachments
     slacker.chat.post_message(channel, attachments=attachments, as_user=True) 
