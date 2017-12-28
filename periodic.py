@@ -5,7 +5,6 @@ from dispatch import dispatch
 
 slacker = Slacker(SLACK_TOKEN)
 
-
 if __name__ == "__main__":
     for (channel_name, channel_type) in channels_config:
         items = channel_report(channel_name, channel_type)

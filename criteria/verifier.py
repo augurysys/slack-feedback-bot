@@ -31,16 +31,16 @@ class Verifier(object):
     def _choose_criterion(item):
 
         criteria_keys = item.tests.keys()
-        if BOT_MENTION_CRITERION in criteria_keys:
-            return None
+        # if BOT_MENTION_CRITERION in criteria_keys:
+        #     return None
 
         if STALENESS_CRITERION in criteria_keys:
             return item.tests[STALENESS_CRITERION]
 
-        if HYPE_CRITERION in criteria_keys:
-            return item.tests[HYPE_CRITERION]
-
         if HOT_COMMENT_CRITERION in criteria_keys:
             return item.tests[HOT_COMMENT_CRITERION]
+
+        if HYPE_CRITERION in criteria_keys:
+            return item.tests[HYPE_CRITERION]
 
         return None

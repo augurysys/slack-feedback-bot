@@ -31,13 +31,13 @@ def chosen_item(items):
         if i1_t == STALENESS_CRITERION:
             return 1
 
-        if i1_t == HYPE_CRITERION:
+        if i1_t == HOT_COMMENT_CRITERION:
             if i2_t == STALENESS_CRITERION:
                 return -1
             else:
                 return 1
         
-        if i1_t == HOT_COMMENT_CRITERION:
+        if i1_t == HYPE_CRITERION:
             return -1
 
 
