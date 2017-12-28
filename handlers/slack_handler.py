@@ -55,6 +55,7 @@ class SlackHandler(object):
         handler = {
             "list": self.get_list,
             "stats": self.handle_stats,
+            "simulate-cron": self.handle_stats,
             "reset": self.handle_reset
         }.get(command, self.command_not_found_handler)
         if handler:
