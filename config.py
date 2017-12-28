@@ -3,8 +3,8 @@ from datetime import timedelta
 
 channels_config = [
     ("code-reviews-hack", "pr"),
-    ("design-reviews", "doc"),
-    ("specs-reviews", "doc")
+    ("design-reviews-hack", "doc"),
+    ("specs-reviews-hack", "doc")
 
 ]
 
