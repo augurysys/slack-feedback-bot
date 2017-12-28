@@ -2,14 +2,14 @@ import os
 from datetime import timedelta
 
 channels_config = [
-    ("code-reviews-hack", "pr"),
-    ("design-reviews-hack", "doc"),
-    ("spec-reviews-hack", "doc")
+    ("code-reviews-demo", "pr"),
+    ("design-reviews-demo", "doc"),
+    ("spec-reviews-hack1", "doc")
 ]
 
 staleness_text = "It's lonely out here for *{name}*, if only someone would comment about {url}"
-hype_text = "The party has already started, *{names}* are already there!, join with your comments! {url}"
 hot_comment_text = "*{name}* dropped a bomb in *{title}*:\n\n\t\"_*{comment}\"*_\n\nwhen are you joining the party? {url}"
+hype_text = "The party has already started, *{names}* are already there! fulfill your FOMO! {url}"
 
 SLACK_TOKEN = os.getenv("SLACK_TOKEN")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -22,7 +22,7 @@ COMMAND_PREFIX = "%"
 
 STALENESS_CRITERION = "staleness"
 DOC_STALENESS_THRESHOLD = timedelta(days=2)
-PR_STALENESS_THRESHOLD = timedelta(days=3)
+PR_STALENESS_THRESHOLD = timedelta(seconds=10)
 
 HYPE_THRESHOLD = 3
 HYPE_CRITERION = "hype"
