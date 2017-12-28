@@ -5,7 +5,7 @@ import time
 from slacker import Slacker
 import config
 from commands.channel_report import channel_report
-
+from commands.list import list
 
 class SlackHandler(object):
     def __init__(self):
@@ -64,6 +64,11 @@ class SlackHandler(object):
 
     def get_list(self, user, channel, command, text):
         print "command list"
+        channel_name, channel_type = self.get_channel_info(channel)
+        res = list(channel_name, channel_type, text)
+        lines = ["{} by {}".format(r.url, r.owner) for r in res]
+        return_message = "******** FEEDBACK BOT RESPONSE **********\n{}".format("\n".join(lines))
+        self.sc.rtm_send_message(channel, return_message)
 
     def handle_stats(self, user, channel, command, text):
         print "command stats"
