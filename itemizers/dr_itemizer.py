@@ -58,13 +58,15 @@ class DrItemizer():
                 all_replies.insert(0, comment)
                 for reply in all_replies:
 
-                    if owner_name == reply['author']['displayName'] or reply['deleted'] or not reply.get('content'):
+                    if reply['deleted'] or not reply.get('content'):
                         continue
+
                     com = Comment()
                     com.time = reply['createdTime']
                     com.time = datetime.strptime(com.time, '%Y-%m-%dT%H:%M:%S.%fZ')
                     com.owner = reply['author']['displayName']
                     com.text = reply['content']
+                    com.replies_count = len(reply.get('replies', []))
                     item.comments.append(com)
 
 
