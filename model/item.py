@@ -16,3 +16,4 @@ class Item(object):
         self.last_mentioned = None
         self.comments = []
         self.tests = {}
+        self.url = None

@@ -38,6 +38,8 @@ class DrItemizer():
             item.last_mentioned = message.timestamp
             if message.is_bot:
                 item.last_mentioned_bot = message.timestamp
+            item.url = 'https://docs.google.com/document/d/{0}'.format(dr_id)
+
             self.items[dr_id] = item
 
     def enrich(self):

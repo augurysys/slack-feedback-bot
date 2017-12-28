@@ -35,6 +35,8 @@ class PrItemizer(object):
                 item.last_mentioned = message.timestamp
                 if message.is_bot:
                     item.last_mentioned_bot = message.timestamp
+
+                item.url = 'https://github.com/augurysys/{0}/pull/{1}'.format(*pr_id.split('#'))
                 self.items[pr_id] = item
 
     def enrich(self):
