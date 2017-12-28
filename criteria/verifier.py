@@ -1,4 +1,4 @@
-from criteria import Staleness, Hype, BotMention
+from criteria import Staleness, Hype, BotMention, HotComment
 from config import *
 
 
@@ -7,11 +7,17 @@ class Verifier(object):
         self._init_criteria(item_type)
 
     def _init_criteria(self, item_type):
-        self._criteria = [
+        
+        _default_criteria = [
             BotMention(item_type),
             Staleness(item_type),
             Hype(item_type),
         ]
+
+        if item_type == "dr":
+            _default_criteria.append(HotComment(item_type))
+
+        self._criteria = _default_criteria
 
     def verify(self, items):
         for item in items:
@@ -33,5 +39,8 @@ class Verifier(object):
 
         if HYPE_CRITERION in criteria_keys:
             return item.tests[HYPE_CRITERION]
+
+        if HOT_COMMENT_CRITERION in criteria_keys:
+            return item.tests[HOT_COMMENT_CRITERION]
 
         return None

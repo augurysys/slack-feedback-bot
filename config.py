@@ -23,3 +23,4 @@ HYPE_THRESHOLD = 3
 HYPE_CRITERION = "hype"
 
 BOT_MENTION_CRITERION = "bot_mention"
+HOT_COMMENT_CRITERION = "hot_comment"

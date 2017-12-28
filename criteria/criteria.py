@@ -56,3 +56,12 @@ class BotMention(Criterion):
         if item.last_mentioned_bot:
             item.tests[BOT_MENTION_CRITERION] = {"type": BOT_MENTION_CRITERION,
                                                  "last_mentioned_bot": item.last_mentioned_bot}
+
+class HotComment(Criterion):
+    def test(self, item):
+
+        if item.comments:
+            sorted_comments = sorted(item.comments, key=lambda i: i.replies_count, reverse=True)
+
+            item.tests[HOT_COMMENT_CRITERION] = {"type": HOT_COMMENT_CRITERION, "comment": sorted_comments[0]}
+
