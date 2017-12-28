@@ -6,7 +6,7 @@ from model.item import Item, Comment
 from datetime import datetime
 
 
-class DrItemizer():
+class DocItemizer():
     def __init__(self, drive_client):
         self.items = dict()
         self.drive_client = drive_client
@@ -33,7 +33,7 @@ class DrItemizer():
         else:
             item = Item()
             item.id = dr_id
-            item.type = 'dr'
+            item.type = 'doc'
             item.first_mentioned = message.timestamp
             item.last_mentioned = message.timestamp
             if message.is_bot:
@@ -58,13 +58,15 @@ class DrItemizer():
                 all_replies.insert(0, comment)
                 for reply in all_replies:
 
-                    if owner_name == reply['author']['displayName'] or reply['deleted'] or not reply.get('content'):
+                    if reply['deleted'] or not reply.get('content'):
                         continue
+
                     com = Comment()
                     com.time = reply['createdTime']
                     com.time = datetime.strptime(com.time, '%Y-%m-%dT%H:%M:%S.%fZ')
                     com.owner = reply['author']['displayName']
                     com.text = reply['content']
+                    com.replies_count = len(reply.get('replies', []))
                     item.comments.append(com)
 
 

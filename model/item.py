@@ -18,3 +18,4 @@ class Item(object):
         self.comments = []
         self.tests = {}
         self.url = None
+        self.project = None
