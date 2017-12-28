@@ -31,7 +31,8 @@ def _format(item):
         "fields": [{
             "value": text,
         }],
-        "image_url": image
+        "image_url": image,
+        "mrkdwn_in": ["fields", "text"]        
     }
 
 def dispatch(items, channel, _type):
