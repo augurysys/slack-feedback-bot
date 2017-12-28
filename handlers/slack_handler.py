@@ -74,7 +74,7 @@ class SlackHandler(object):
                     counter += 1
             except:
                 pass
-        self.sc.rtm_send_message(channel, "Removed {} messages from channel. _So fresh and so clean_")
+        #self.sc.rtm_send_message(channel, "Removed {} messages from channel. _So fresh and so clean_").format(counter)
 
     def get_list(self, user, channel, command, text):
         print "command list"
